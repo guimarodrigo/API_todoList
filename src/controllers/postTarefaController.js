@@ -1,8 +1,12 @@
-'use strict'
-const express = require('express');
-const router = express.Router();
+const tarefaService = require('../services/tarefaService');
 
-//Post Tarefa
-exports.post = (req, res, next) => {
-    res.status(201).send(req.body);
+exports.post = async (req, res, next) => {
+  try {
+    const tarefa = await tarefaService.createTarefa(req.body);
+    res.status(201).json(tarefa);
+  } catch (error) {
+    console.error(error)
+    console.error('Erro ao criar tarefa:', error);
+    res.status(500).json({ error: 'Erro ao criar tarefa' });
+  }
 };

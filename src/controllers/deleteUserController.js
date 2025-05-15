@@ -1,9 +1,10 @@
-'use strict'
+const userService = require('../services/userService');
 
-const express = require('express');
-const router = express.Router();
-
-//Deletar Usuario
-exports.delete = (req, res, next) => {
-    res.status(201).send(req.body);
+exports.delete = async (req, res, next) => {
+  try {
+    await userService.deleteUser(req.params.id);
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao deletar usuário' });
+  }
 };

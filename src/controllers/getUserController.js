@@ -1,15 +1,3 @@
-// 'use strict'
-
-// const express = require('express');
-// const router = express.Router();
-
-// //get usuario
-// exports.get = (req, res, next) => {
-//     res.status(200).send({
-//         title: "Usuario recebido",
-//     })
-// };
-
 const userService = require('../services/userService');
 
 exports.get = async (req, res, next) => {

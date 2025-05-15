@@ -8,8 +8,8 @@ const controllerPOST = require('../controllers/postTarefaController')
 const controllerDELETE = require('../controllers/deleteTarefaController')
 
 router.get('/', controllerGET.get)
-router.put('/:id', controllerPOST.post);
-router.post('/', controllerPUT.put);
+router.put('/:id', controllerPUT.put);
+router.post('/', controllerPOST.post);
 router.delete('/:id', controllerDELETE.delete);
 
 module.exports = router;

@@ -1,9 +1,11 @@
-'use strict'
+const categoriaService = require('../services/categoriaService');
 
-const express = require('express');
-const router = express.Router();
-
-//Post Categoria 
-exports.post = (req, res, next) => {
-    res.status(201).send(req.body);
+exports.post = async (req, res, next) => {
+  try {
+    const categoria = await categoriaService.createCategoria(req.body);
+    res.status(201).json(categoria);
+  } catch (error) {
+    console.error('Erro ao criar categoria:', error);
+    res.status(500).json({ error: 'Erro ao criar categoria' });
+  }
 };

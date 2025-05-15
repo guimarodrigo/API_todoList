@@ -1,13 +1,11 @@
-'use strict'
-const express = require('express');
-const router = express.Router();
+const tarefaService = require('../services/tarefaService');
 
-
-//Put Tarefa 
-exports.put = (req, res, next) => {
-    const id = req.params.id;
-    res.status(200).send({ 
-        id: id, 
-        item: req.body
-    })
+exports.put = async (req, res, next) => {
+  try {
+    const tarefaAtualizada = await tarefaService.updateTarefa(req.params.id, req.body);
+    res.status(200).json(tarefaAtualizada);
+  } catch (error) {
+    console.error('Erro ao atualizar tarefa:', error);
+    res.status(500).json({ error: 'Erro ao atualizar tarefa' });
+  }
 };

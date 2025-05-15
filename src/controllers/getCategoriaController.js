@@ -1,12 +1,11 @@
-'use strict'
+const categoriaService = require('../services/categoriaService');
 
-const express = require('express');
-const router = express.Router();
-
-
-//Get categoria
-exports.get = (req, res, next) => {
-    res.status(200).send({
-        title: "Categoria recebida",
-    })
+exports.get = async (req, res, next) => {
+  try {
+    const categorias = await categoriaService.getAllCategorias();
+    res.status(200).json(categorias);
+  } catch (error) {
+    console.error('Erro ao buscar categorias:', error);
+    res.status(500).json({ error: 'Erro ao buscar categorias' });
+  }
 };

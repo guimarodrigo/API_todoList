@@ -1,9 +1,11 @@
-'use strict'
+const categoriaService = require('../services/categoriaService');
 
-const express = require('express');
-const router = express.Router();
-
-//Delete Vategoria 
-exports.delete = (req, res, next) => {
-    res.status(201).send(req.body);
+exports.delete = async (req, res, next) => {
+  try {
+    await categoriaService.deleteCategoria(req.params.id);
+    res.status(204).send();
+  } catch (error) {
+    console.error('Erro ao deletar categoria:', error);
+    res.status(500).json({ error: 'Erro ao deletar categoria' });
+  }
 };

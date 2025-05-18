@@ -1,29 +1,27 @@
-const prisma = require('../prisma/cliente');
+import prisma from '../prisma/cliente.js';  // Importação correta para ESModules
 
-module.exports = {
-  async getAllTarefas() {
-    return await prisma.tarefa.findMany({
-      include: {
-        Usuario: true,
-        Ctg: true
-      }
-    });
-  },
+export const getAllTarefas = async () => {
+  return await prisma.tarefa.findMany({
+    include: {
+      Usuario: true,
+      Ctg: true
+    }
+  });
+};
 
-  async createTarefa(data) {
-    return await prisma.tarefa.create({ data });
-  },
+export const createTarefa = async (data) => {
+  return await prisma.tarefa.create({ data });
+};
 
-  async updateTarefa(id, data) {
-    return await prisma.tarefa.update({
-      where: { id },
-      data
-    });
-  },
+export const updateTarefa = async (id, data) => {
+  return await prisma.tarefa.update({
+    where: { id },
+    data
+  });
+};
 
-  async deleteTarefa(id) {
-    return await prisma.tarefa.delete({
-      where: { id }
-    });
-  }
+export const deleteTarefa = async (id) => {
+  return await prisma.tarefa.delete({
+    where: { id }
+  });
 };

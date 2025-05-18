@@ -1,28 +1,38 @@
-const prisma = require('../prisma/cliente.js');
+import * as UserModel from '../models/tarefaModel.js';  // Importa todas as funções do modelo
+import prisma from '../prisma/cliente.js';  // Importação correta para ESModules
 
-module.exports = {
-  async getAllUsers() {
-    return await prisma.user.findMany();
-  },
+// Funções do serviço usando ESModules
+export const getAllUsers = async () => {
+  try {
+    const users = await UserModel.findAll();  // Chama a função do modelo para buscar usuários
+    return users;
+  } catch (error) {
+    throw new Error('Erro ao buscar usuários');
+  }
+};
 
-  async createUser(data) {
-    return await prisma.user.create({ data});
-  },
-  // A função prisma.user.create({ data }) espera um objeto chamado data que 
-  // contenha todas as propriedades do modelo do banco de dados — como nome, email, senha.
-  // Você não precisa (e nem deve) passar nome, email, senha separadamente como parâmetros 
-  // da função, porque o Prisma já espera um objeto data com esses campos.
+export const createUser = async (data) => {
+  try {
+    const user = await UserModel.create(data);  // Cria um usuário no banco de dados
+    return user;
+  } catch (error) {
+    throw new Error('Erro ao criar usuário');
+  }
+};
 
-  async updateUser(id, data) {
-    return await prisma.user.update({
-      where: { id: Number(id) },
-      data,
-    });
-  },
+export const updateUser = async (id, data) => {
+  try {
+    const updatedUser = await UserModel.update(id, data);  // Atualiza um usuário no banco de dados
+    return updatedUser;
+  } catch (error) {
+    throw new Error('Erro ao atualizar usuário');
+  }
+};
 
-  async deleteUser(id) {
-    return await prisma.user.delete({
-      where: { id: Number(id) },
-    });
+export const deleteUser = async (id) => {
+  try {
+    await UserModel.remove(id);  // Deleta um usuário do banco de dados
+  } catch (error) {
+    throw new Error('Erro ao deletar usuário');
   }
 };

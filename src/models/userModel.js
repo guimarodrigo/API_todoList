@@ -1,17 +1,17 @@
-import prisma from '../prisma/cliente.js';  // Importação do Prisma para interagir com a base de dados
+const prisma = require('../prisma/cliente.js'); // Importação do Prisma para interagir com a base de dados
 
 // Função para buscar todos os usuários
-export function findAll() {
+function findAll() {
   return prisma.user.findMany();
 }
 
 // Função para criar um novo usuário
-export function create(data) {
+function create(data) {
   return prisma.user.create({ data });
 }
 
 // Função para atualizar um usuário por ID
-export function update(id, data) {
+function update(id, data) {
   return prisma.user.update({
     where: { id: Number(id) },
     data
@@ -19,8 +19,16 @@ export function update(id, data) {
 }
 
 // Função para deletar um usuário por ID
-export function remove(id) {
+function remove(id) {
   return prisma.user.delete({
     where: { id: Number(id) }
   });
 }
+
+// Exportando todas as funções
+module.exports = {
+  findAll,
+  create,
+  update,
+  remove
+};

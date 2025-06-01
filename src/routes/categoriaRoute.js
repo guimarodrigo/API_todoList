@@ -1,15 +1,14 @@
-'use strict';
-const express = require('express');
+"use strict";
+const express = require("express");
 const router = express.Router();
 
-const controllerGET = require('../controllers/getCategoriaController')
-const controllerPOST = require('../controllers/postCategoriaController')
-const controllerPUT = require('../controllers/putCategoriaController')
-const controllerDELETE = require('../controllers/deleteCategoriaController')
+const controller = require("../controllers/categoriaController");
+const { verificarLogin } = require("../middlewares/auth");
 
-router.get('/', controllerGET.get);
-router.post('/', controllerPOST.post);
-router.put('/:id', controllerPUT.put);
-router.delete('/:id', controllerDELETE.delete);
+router.use(verificarLogin)
+router.get("/", controller.get);
+router.post("/", controller.post);
+router.put("/:id", controller.put);
+router.delete("/:id", controller.delete);
 
 module.exports = router;

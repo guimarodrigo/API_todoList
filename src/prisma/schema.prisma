@@ -14,12 +14,12 @@ model User {
   senha String @db.VarChar(100)
 
   tarefas tarefa[]
-  @@map("usuarios")
+  @@map("usuario")
 }
 model categoria {
   id    Int @id @default(autoincrement())
   nome  String @db.VarChar(100)
-  @@map("categorias")
+  @@map("categoria")
   tarefas tarefa[]
 }
 
@@ -36,6 +36,6 @@ model tarefa {
 
   Usuario User @relation(fields: [Usuario_id], references: [id])
   Usuario_id Int
-  @@map("Tarefas")
+  @@map("tarefa")
 }
 

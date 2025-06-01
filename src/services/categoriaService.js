@@ -1,4 +1,4 @@
-const prisma = require('../prisma/cliente.js'); // Importação para CommonJS
+const prisma = require("../prisma/cliente.js");
 
 const getAllCategorias = async () => {
   return await prisma.categoria.findMany();
@@ -20,11 +20,9 @@ const deleteCategoria = async (id) => {
     where: { id: Number(id) },
   });
 };
-
-// Exportação no formato CommonJS
 module.exports = {
   getAllCategorias,
   createCategoria,
   updateCategoria,
-  deleteCategoria
+  deleteCategoria,
 };

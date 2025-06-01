@@ -19,3 +19,5 @@
 
 // npx prisma migrate dev -> cria um arquivo de migração para o bd
 // npx prisma migrate reset -> reseta a migração(banco de dados é perdido e é necessário criar outro.)
+
+// npm install jsonwebtoken -> Instalação do jsonwebtoken (JWT)

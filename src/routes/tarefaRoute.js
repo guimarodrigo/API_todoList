@@ -5,9 +5,7 @@ const router = express.Router();
 const controller = require("../controllers/tarefaController");
 const { verificarLogin } = require("../middlewares/auth");
 
-
-
-router.use(verificarLogin);
+// router.use(verificarLogin);
 router.get("/", controller.get);
 router.put("/:id", controller.put);
 router.post("/", controller.post);

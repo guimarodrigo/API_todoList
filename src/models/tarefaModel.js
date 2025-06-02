@@ -8,7 +8,7 @@ function findAll() {
   });
 }
 function create(data) {
-  return prisma.tarefa.create({ data });
+  return prisma.tarefa.create({data});
 }
 function update(id, data) {
   return prisma.tarefa.update({

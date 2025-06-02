@@ -1,16 +1,17 @@
 const prisma = require("../prisma/cliente.js");
+const tarefaModel = require("../models/tarefaModel.js");
 
 const getAllTarefas = async () => {
   return await prisma.tarefa.findMany({
     include: {
-      Usuario: true,
-      Ctg: true,
+      usuario: true,
+      ctg: true,
     },
   });
 };
 
 const createTarefa = async (data) => {
-  return await prisma.tarefa.create({ data });
+  return await tarefaModel.create(data);
 };
 
 const updateTarefa = async (id, data) => {
